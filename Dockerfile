@@ -8,7 +8,11 @@ RUN apt-get update && apt-get install -y \
   postgresql-client \
   build-essential \
   locales \
-  nodejs
+  nodejs \
+  vim
+
+# Use vim as the default editor.
+ENV EDITOR vi
 
 # Use en_US.UTF-8 as our locale
 RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment

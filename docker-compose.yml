@@ -14,7 +14,7 @@ services:
     volumes_from:
       - cache
     environment:
-      - WITHIN_DOCKER=1
+      - DOCKERIZED=true
       - PGHOST=postgres
       - PGUSER=postgres
     ports:

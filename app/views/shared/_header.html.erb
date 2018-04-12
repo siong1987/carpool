@@ -1,0 +1,34 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <h5 class="my-0 mr-md-auto font-weight-normal">
+    <%= link_to "Home", root_url %>
+  </h5>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <% if logged_in? %>
+      <div class="dropdown">
+        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Account
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Profile", info_url, class: "dropdown-item" %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "Logout", logout_url, class: "dropdown-item", method: :delete %>
+        </div>
+      </div>
+    <% else %>
+      <form method="get" action="https://www.accountkit.com/v1.0/basic/dialog/sms_login/">
+        <input type="hidden" name="app_id" value="<%= Rails.application.credentials.facebook[:app_id] %>">
+        <input type="hidden" name="redirect" value="http://localhost:3000/session/">
+        <input type="hidden" name="state" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="fbAppEventsEnabled" value=true>
+        <button type="submit" class="btn btn-link">Sign up / Login</button>
+      </form>
+    <% end %>
+  </nav>
+  <a class="btn btn-outline-primary" href="#">Create a carpool</a>
+</div>
+<% if notice %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
+<% if alert %>
+  <div class="alert alert-danger"><%= alert %></div>
+<% end %>

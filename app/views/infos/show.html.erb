@@ -1,0 +1,16 @@
+<%= render partial: '/shared/header' %>
+
+<div class="row justify-content-md-center">
+  <div class="col col-lg-6">
+    <p class="lead">
+      Your account is connected with the phone number: <%= current_user.phone_national_number %>.
+    </p>
+    <%= form_for current_user, url: info_path do |f| %>
+      <div class="form-group">
+        <label for="exampleInputName">Name</label>
+        <%= f.text_field :name, class: "form-control", placeholder: "Enter name" %>
+      </div>
+      <%= f.submit 'Update', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
