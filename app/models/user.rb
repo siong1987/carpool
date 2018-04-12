@@ -4,6 +4,12 @@ class User < ApplicationRecord
   validates :phone_country_prefix, presence: true
   validates :phone_national_number, presence: true
 
+  has_one :ride
+
+  def has_ride?
+    ride.present?
+  end
+
   def self.validate(code)
     token_exchanger = Facebook::AccountKit::TokenExchanger.new(code)
     access_token = token_exchanger.fetch_access_token

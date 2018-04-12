@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :session, only: [:index]
   resource :info, only: [:show, :update]
   resources :cities, only: [:index]
-  resources :rides, only: [:new, :create]
+  resources :rides, only: [:new, :create, :edit, :update]
 end

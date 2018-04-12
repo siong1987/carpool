@@ -1,0 +1,89 @@
+<%= render partial: '/shared/header' %>
+
+<div class="row justify-content-md-center">
+  <div class="col col-lg-6">
+    <p class="lead">
+      Your phone number is only accessible to our users.
+    </p>
+    <br />
+    <%= form_for @ride do |f| %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputFrom">From</label>
+          <input type="text" class="form-control typeahead" id="inputFrom" placeholder="Kuala Lumpur, Federal Territory of Kuala Lumpur" value="<%= @from_city_fullname %>">
+          <% if @ride.errors.include?(:from_city_id) %>
+            <div class="invalid-feedback">
+              Please select a valid city from the dropdown.
+            </div>
+          <% end %>
+          <%= f.hidden_field :from_city_id %>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputTo">To</label>
+          <input type="text" class="form-control typeahead" id="inputTo" placeholder="Teluk Intan, Perak" value="<%= @to_city_fullname %>">
+          <% if @ride.errors.include?(:to_city_id) %>
+            <div class="invalid-feedback">
+              Please select a valid city from the dropdown.
+            </div>
+          <% end %>
+          <%= f.hidden_field :to_city_id %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputNote">Note</label>
+        <%= f.text_area :note, rows: 5, class: "form-control", placeholder: "Seats available for 2 people. We will be meeting at Bukit Jalil Stadium and leave around 3pm on Tuesday." %>
+        <% if @ride.errors.include?(:note) %>
+          <div class="invalid-feedback">
+            Note cannot be empty. Please share as much details as possible, for example, meeting point, meeting time, and available seat(s).
+          </div>
+        <% else %>
+          <small id="noteHelp" class="form-text text-muted">Please share as much details as possible, for example, meeting point, meeting time, and available seat(s).</small>
+        <% end %>
+      </div>
+      <button type="submit" class="btn btn-primary">Update your carpool</button>
+    <% end %>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
+  <script>
+    var $input = $(".typeahead");
+    $input.typeahead({
+      source: function(query, process) {
+			  $.getJSON("/cities?query=" + query).done(function(data) {
+			  	process(data);
+			  });
+      },
+      displayText: function(item) {
+        return item.fullname;
+      },
+      delay: 500,
+      autoSelect: false
+    });
+
+    var $inputFrom = $("#inputFrom");
+    $inputFrom.change(function(event) {
+      var current = $inputFrom.typeahead("getActive");
+
+      // If there is a match
+      if (current) {
+        if (current.fullname == event.target.value) {
+          $("#ride_from_city_id").val(current.id);
+        }
+      }
+    });
+
+    var $inputTo = $("#inputTo");
+    $inputTo.change(function(event) {
+      var current = $inputTo.typeahead("getActive");
+
+      // If there is a match
+      if (current) {
+        if (current.fullname == event.target.value) {
+          $("#ride_to_city_id").val(current.id);
+        }
+      }
+    });
+  </script>
+<% end %>

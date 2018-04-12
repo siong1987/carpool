@@ -24,7 +24,11 @@
       </form>
     <% end %>
   </nav>
-  <%= link_to "Create a carpool", new_ride_url, class: "btn btn-outline-primary" %>
+  <% if current_user.has_ride? %>
+    <%= link_to "Manage your carpool", edit_ride_url(current_user.ride), class: "btn btn-outline-primary" %>
+  <% else %>
+    <%= link_to "Create a carpool", new_ride_url, class: "btn btn-outline-primary" %>
+  <% end %>
 </div>
 <% if notice %>
   <div class="alert alert-success"><%= notice %></div>
