@@ -24,7 +24,7 @@
       </form>
     <% end %>
   </nav>
-  <a class="btn btn-outline-primary" href="#">Create a carpool</a>
+  <%= link_to "Create a carpool", new_ride_url, class: "btn btn-outline-primary" %>
 </div>
 <% if notice %>
   <div class="alert alert-success"><%= notice %></div>

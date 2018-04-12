@@ -5,6 +5,7 @@
     <p class="lead">
       Your account is connected with the phone number: <%= current_user.phone_national_number %>.
     </p>
+    <br />
     <%= form_for current_user, url: info_path do |f| %>
       <div class="form-group">
         <label for="exampleInputName">Name</label>
