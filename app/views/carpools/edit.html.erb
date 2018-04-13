@@ -7,7 +7,7 @@
     </p>
     <div class="row">
       <div class="col-sm mb-1">
-        <%= link_to 'Mark your carpool as full', carpool_path(@carpool), class: "btn btn-success", method: :put %>
+        <%= link_to 'Mark your carpool as full', carpool_full_path(@carpool), class: "btn btn-success", method: :put %>
       </div>
       <div class="col-sm mb-1">
         <%= link_to 'Delete your carpool', carpool_path(@carpool), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>

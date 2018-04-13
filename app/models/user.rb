@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :phone_country_prefix, presence: true
   validates :phone_national_number, presence: true
 
-  has_one :carpool
+  has_one :carpool, -> { where(full: false) }
 
   def has_carpool?
     carpool.present? && carpool.persisted?

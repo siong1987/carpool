@@ -1,6 +1,6 @@
 class CarpoolsController < ApplicationController
   before_action :check_existing_carpool, only: [:new, :create]
-  before_action :set_carpool, only: [:edit, :update, :destroy, :success]
+  before_action :set_carpool, only: [:edit, :update, :destroy, :full]
 
   def new
     @carpool = Carpool.new
