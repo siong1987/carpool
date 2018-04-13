@@ -17,7 +17,7 @@
     <% else %>
       <form method="get" action="https://www.accountkit.com/v1.0/basic/dialog/sms_login/">
         <input type="hidden" name="app_id" value="<%= Rails.application.credentials.facebook[:app_id] %>">
-        <input type="hidden" name="redirect" value="http://localhost:3000/session/">
+        <input type="hidden" name="redirect" value="<%= facebook_redirect_url %>">
         <input type="hidden" name="state" value="<%= form_authenticity_token %>">
         <input type="hidden" name="fbAppEventsEnabled" value=true>
         <button type="submit" class="btn btn-link">Sign up / Login</button>
