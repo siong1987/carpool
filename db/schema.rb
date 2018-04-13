@@ -32,8 +32,11 @@ ActiveRecord::Schema.define(version: 2018_04_12_212545) do
     t.integer "from_city_id"
     t.integer "to_city_id"
     t.text "note"
+    t.datetime "deleted_at"
+    t.boolean "success", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_rides_on_deleted_at"
     t.index ["user_id"], name: "index_rides_on_user_id"
   end
 

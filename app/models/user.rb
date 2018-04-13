@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_one :ride
 
   def has_ride?
-    ride.present?
+    ride.present? && ride.persisted?
   end
 
   def self.validate(code)

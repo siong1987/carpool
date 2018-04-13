@@ -3,8 +3,10 @@
 <div class="row justify-content-md-center">
   <div class="col col-lg-6">
     <p class="lead">
-      Your phone number is only accessible to our users.
+      Manage your existing carpool.
     </p>
+    <%= link_to 'Delete your carpool', ride_path(@ride), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br />
     <br />
     <%= form_for @ride do |f| %>
       <div class="form-row">

@@ -1,4 +1,6 @@
 class Ride < ApplicationRecord
+  acts_as_paranoid
+
   belongs_to :user
   validates :user, presence: true
 
