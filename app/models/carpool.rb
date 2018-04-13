@@ -25,4 +25,11 @@ class Carpool < ApplicationRecord
       errors.add(:to_city_id, "can't be absent")
     end
   end
+
+  def self.search(from_city, to_city)
+    from_cities_id = City.near([from_city.latitude, from_city.longitude], 10).map(&:id)
+    to_cities_id = City.near([to_city.latitude, to_city.longitude], 10).map(&:id)
+
+    Carpool.includes(:from_city, :to_city).where(from_city_id: from_cities_id, to_city_id: to_cities_id)
+  end
 end

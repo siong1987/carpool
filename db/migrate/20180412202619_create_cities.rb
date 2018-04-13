@@ -12,5 +12,6 @@ class CreateCities < ActiveRecord::Migration[5.2]
 
     add_index :cities, :place_id, unique: true
     add_index :cities, [:name, :state], unique: true
+    add_index :cities, [:latitude, :longitude]
   end
 end

@@ -56,6 +56,13 @@ class CarpoolsController < ApplicationController
     end
   end
 
+  def search
+    @from_city = City.where(id: params[:from_city_id]).first
+    @to_city = City.where(id: params[:to_city_id]).first
+
+    @carpools = Carpool.search(@from_city, @to_city)
+  end
+
   private
 
   def check_existing_carpool

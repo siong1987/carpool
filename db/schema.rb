@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 2018_04_12_212545) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["latitude", "longitude"], name: "index_cities_on_latitude_and_longitude"
     t.index ["name", "state"], name: "index_cities_on_name_and_state", unique: true
     t.index ["place_id"], name: "index_cities_on_place_id", unique: true
   end

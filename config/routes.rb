@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :cities, only: [:index]
   resources :carpools, only: [:new, :create, :edit, :update, :destroy] do
     put :full
+    get :search, on: :collection
   end
 end

@@ -84,6 +84,7 @@ GEM
     execjs (2.7.0)
     facebook-account-kit (1.0.0)
     ffi (1.9.23)
+    geocoder (1.4.7)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     i18n (1.0.0)
@@ -215,6 +216,7 @@ DEPENDENCIES
   cityhash
   coffee-rails (~> 4.2)
   facebook-account-kit
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)

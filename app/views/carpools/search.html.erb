@@ -1,27 +1,41 @@
 <%= render partial: '/shared/header' %>
 
-<div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Carpool GE 2018</h1>
-  <p class="lead">We help you to carpool for Malaysian GE 2018.</p>
-</div>
-
 <div class="row justify-content-md-center">
   <div class="col col-lg-6">
     <form action="/carpools/search" method="get">
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputFrom">From</label>
-          <input type="text" class="form-control typeahead" id="inputFrom" placeholder="Kuala Lumpur, Federal Territory of Kuala Lumpur">
+          <input type="text" class="form-control typeahead" id="inputFrom" placeholder="Kuala Lumpur, Federal Territory of Kuala Lumpur" value="<%= @from_city.fullname %>">
           <input type="hidden" id="carpool_from_city_id" name="from_city_id" />
         </div>
         <div class="form-group col-md-6">
           <label for="inputTo">To</label>
-          <input type="text" class="form-control typeahead" id="inputTo" placeholder="Teluk Intan, Perak">
+          <input type="text" class="form-control typeahead" id="inputTo" placeholder="Teluk Intan, Perak" value="<%= @to_city.fullname %>">
           <input type="hidden" id="carpool_to_city_id" name="to_city_id" />
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Search carpools</button>
     </form>
+  </div>
+</div>
+
+    <% @carpools.each do |carpool| %>
+      <div class="row justify-content-md-center my-4">
+        <div class="card col col-lg-6">
+          <div class="card-body">
+            From:
+            <%= carpool.from_city.fullname %>
+            <br />
+            To:
+            <%= carpool.to_city.fullname %>
+            <br />
+            Created by:
+            <%= carpool.user.name %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 

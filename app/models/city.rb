@@ -1,4 +1,6 @@
-class City < ApplicationRecord
+class City < ActiveRecord::Base
+  reverse_geocoded_by :latitude, :longitude
+
   validates :place_id, presence: true, uniqueness: true
   validates :name, presence: true
   validates :state, presence: true
