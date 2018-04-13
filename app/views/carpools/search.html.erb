@@ -20,24 +20,37 @@
   </div>
 </div>
 
-    <% @carpools.each do |carpool| %>
-      <div class="row justify-content-md-center my-4">
-        <div class="card col col-lg-6">
-          <div class="card-body">
-            From:
-            <%= carpool.from_city.fullname %>
-            <br />
-            To:
-            <%= carpool.to_city.fullname %>
-            <br />
-            Created by:
-            <%= carpool.user.name %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<% if @carpools.empty? %>
+  <div class="row justify-content-md-center my-4">
+    <div class="col col-lg-6">
+      <p class="lead">No results found.</p>
+    </div>
   </div>
-</div>
+<% end %>
+
+<% @carpools.each do |carpool| %>
+  <div class="row justify-content-md-center my-4">
+    <div class="card col col-lg-6">
+      <div class="card-body">
+        <b>From:</b>
+        <%= carpool.from_city.fullname %>
+        <br />
+        <b>To:</b>
+        <%= carpool.to_city.fullname %>
+        <br />
+        <b>Created by:</b>
+        <%= carpool.user.name %>
+        <br />
+        <b>Contact number:</b>
+        <% if logged_in? %>
+          <%= carpool.user.phone_national_number %>
+        <% else %>
+          Please sign up to view contact number.
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% content_for :javascript do %>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.js"></script>
