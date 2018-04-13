@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :session, only: [:index]
   resource :info, only: [:show, :update]
   resources :cities, only: [:index]
-  resources :rides, only: [:new, :create, :edit, :update, :destroy]
+  resources :carpools, only: [:new, :create, :edit, :update, :destroy] do
+    put :full
+  end
 end

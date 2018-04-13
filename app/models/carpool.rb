@@ -1,4 +1,4 @@
-class Ride < ApplicationRecord
+class Carpool < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :user

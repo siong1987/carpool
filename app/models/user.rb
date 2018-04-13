@@ -4,10 +4,10 @@ class User < ApplicationRecord
   validates :phone_country_prefix, presence: true
   validates :phone_national_number, presence: true
 
-  has_one :ride
+  has_one :carpool
 
-  def has_ride?
-    ride.present? && ride.persisted?
+  def has_carpool?
+    carpool.present? && carpool.persisted?
   end
 
   def self.validate(code)

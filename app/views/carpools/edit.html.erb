@@ -3,16 +3,24 @@
 <div class="row justify-content-md-center">
   <div class="col col-lg-6">
     <p class="lead">
-      Once you have created a carpool, people who are interested in the carpool will reach out to you via your phone number.
-      Your phone number is only accessible to our users.
+      Manage your existing carpool.
     </p>
+    <div class="row">
+      <div class="col-sm mb-1">
+        <%= link_to 'Mark your carpool as full', carpool_path(@carpool), class: "btn btn-success", method: :put %>
+      </div>
+      <div class="col-sm mb-1">
+        <%= link_to 'Delete your carpool', carpool_path(@carpool), class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
     <br />
-    <%= form_for @ride do |f| %>
+    <br />
+    <%= form_for @carpool do |f| %>
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="inputFrom">From</label>
           <input type="text" class="form-control typeahead" id="inputFrom" placeholder="Kuala Lumpur, Federal Territory of Kuala Lumpur" value="<%= @from_city_fullname %>">
-          <% if @ride.errors.include?(:from_city_id) %>
+          <% if @carpool.errors.include?(:from_city_id) %>
             <div class="invalid-feedback">
               Please select a valid city from the dropdown.
             </div>
@@ -22,7 +30,7 @@
         <div class="form-group col-md-6">
           <label for="inputTo">To</label>
           <input type="text" class="form-control typeahead" id="inputTo" placeholder="Teluk Intan, Perak" value="<%= @to_city_fullname %>">
-          <% if @ride.errors.include?(:to_city_id) %>
+          <% if @carpool.errors.include?(:to_city_id) %>
             <div class="invalid-feedback">
               Please select a valid city from the dropdown.
             </div>
@@ -33,7 +41,7 @@
       <div class="form-group">
         <label for="inputNote">Note</label>
         <%= f.text_area :note, rows: 5, class: "form-control", placeholder: "Seats available for 2 people. We will be meeting at Bukit Jalil Stadium and leave around 3pm on Tuesday." %>
-        <% if @ride.errors.include?(:note) %>
+        <% if @carpool.errors.include?(:note) %>
           <div class="invalid-feedback">
             Note cannot be empty. Please share as much details as possible, for example, meeting point, meeting time, and available seat(s).
           </div>
@@ -41,7 +49,7 @@
           <small id="noteHelp" class="form-text text-muted">Please share as much details as possible, for example, meeting point, meeting time, and available seat(s).</small>
         <% end %>
       </div>
-      <button type="submit" class="btn btn-primary">Create a carpool</button>
+      <button type="submit" class="btn btn-primary">Update your carpool</button>
     <% end %>
   </div>
 </div>
@@ -70,7 +78,7 @@
       // If there is a match
       if (current) {
         if (current.fullname == event.target.value) {
-          $("#ride_from_city_id").val(current.id);
+          $("#carpool_from_city_id").val(current.id);
         }
       }
     });
@@ -82,7 +90,7 @@
       // If there is a match
       if (current) {
         if (current.fullname == event.target.value) {
-          $("#ride_to_city_id").val(current.id);
+          $("#carpool_to_city_id").val(current.id);
         }
       }
     });

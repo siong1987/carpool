@@ -24,10 +24,10 @@
       </form>
     <% end %>
   </nav>
-  <% if current_user.has_ride? %>
-    <%= link_to "Manage your carpool", edit_ride_url(current_user.ride), class: "btn btn-outline-primary" %>
+  <% if logged_in? && current_user.has_carpool? %>
+    <%= link_to "Manage your carpool", edit_carpool_url(current_user.carpool), class: "btn btn-outline-primary" %>
   <% else %>
-    <%= link_to "Create a carpool", new_ride_url, class: "btn btn-outline-primary" %>
+    <%= link_to "Create a carpool", new_carpool_url, class: "btn btn-outline-primary" %>
   <% end %>
 </div>
 <% if notice %>

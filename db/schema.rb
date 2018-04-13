@@ -15,6 +15,19 @@ ActiveRecord::Schema.define(version: 2018_04_12_212545) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "carpools", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "from_city_id"
+    t.integer "to_city_id"
+    t.text "note"
+    t.datetime "deleted_at"
+    t.boolean "full", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_carpools_on_deleted_at"
+    t.index ["user_id"], name: "index_carpools_on_user_id"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "place_id"
     t.string "name"
@@ -25,19 +38,6 @@ ActiveRecord::Schema.define(version: 2018_04_12_212545) do
     t.datetime "updated_at", null: false
     t.index ["name", "state"], name: "index_cities_on_name_and_state", unique: true
     t.index ["place_id"], name: "index_cities_on_place_id", unique: true
-  end
-
-  create_table "rides", force: :cascade do |t|
-    t.bigint "user_id"
-    t.integer "from_city_id"
-    t.integer "to_city_id"
-    t.text "note"
-    t.datetime "deleted_at"
-    t.boolean "success", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deleted_at"], name: "index_rides_on_deleted_at"
-    t.index ["user_id"], name: "index_rides_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
