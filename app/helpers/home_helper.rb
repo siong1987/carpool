@@ -1,6 +1,6 @@
 module HomeHelper
   def facebook_redirect_url
-    return "https://#{domain}/session/" if domain = ENV["DOMAIN"]
+    return "https://#{ENV["DOMAIN"]}/session/" if ENV["DOMAIN"]
 
     "http://localhost:3000/session/"
   end
