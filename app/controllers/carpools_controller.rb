@@ -1,6 +1,7 @@
 class CarpoolsController < ApplicationController
   before_action :check_existing_carpool, only: [:new, :create]
   before_action :set_carpool, only: [:edit, :update, :destroy, :full]
+  skip_before_action :authenticate_user!, only: [:search]
 
   def new
     @carpool = Carpool.new
